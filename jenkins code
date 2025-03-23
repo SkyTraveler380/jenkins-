@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+    environment {
+        name = 'omkar'
+    }
+    parameters {
+        string(name: 'person', defaultValue: 'John Doe', description: 'Enter the person\'s name')
+    }
+    stages {
+        stage('test') {
+            steps {
+                powershell(script: 'Get-Date')
+                echo "The name is: ${env.name}"
+                echo "The parameter person is: ${params.person}"
+            }
+        }
+        stage('build') {
+            steps {
+                echo 'build'
+            }
+        }
+        stage('build 2') {
+            steps {
+                echo 'build 2'
+            }
+        }
+        stage('deploy on test') {
+            steps {
+                echo 'deploy on test'
+            }
+        }
+        stage('deploy on prod') {
+            steps {
+                echo 'deploy on prod'
+            }
+        }
+    }
+}
